@@ -1,5 +1,5 @@
-name: 'Create Github Release'
-description: 'Create Github release for a repository'
+name: 'Swift Release'
+description: 'Create GitHub release for a repository'
 author: 'Jose Rodriguez'
 inputs:
   token:
@@ -37,7 +37,7 @@ outputs:
     description: 'URL for uploading assets to the created release'    
 runs:
   using: 'node16'
-  main: 'dist/setup/index.js'
+  main: 'dist/index.js'
 branding:
   icon: 'play-circle'
   color: 'blue'  

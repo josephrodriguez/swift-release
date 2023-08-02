@@ -1,5 +1,5 @@
 {
-    "name": "create-release",
+    "name": "swift-release",
     "version": "1.0.0",
     "description": "Create Github Release",
     "private": true,
@@ -18,7 +18,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/josephrodriguez/create-release.git"
+        "url": "git+https://github.com/josephrodriguez/swift-release.git"
     },
     "author": "Jose Rodriguez",
     "license": "MIT",

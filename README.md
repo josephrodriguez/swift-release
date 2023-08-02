@@ -1,4 +1,4 @@
-## create-release
+## swift-release
 
 GitHub Actions workflow to create, update, and upload releases for your projects.
 
