@@ -1,0 +1,8 @@
+export const INPUT_OWNER = 'owner';
+export const INPUT_REPO = 'repo';
+export const INPUT_TAG_NAME = 'tag';
+export const INPUT_RELEASE_NAME = 'name';
+export const INPUT_BODY = 'body';
+export const INPUT_TOKEN = 'token';
+export const INPUT_PRERELEASE = 'prerelease';
+export const INPUT_DRAFT = 'draft';
