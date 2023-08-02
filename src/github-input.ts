@@ -14,18 +14,17 @@ export interface Inputs {
 }
 
 export function getInputs(): Inputs {
-  const token =
-    core.getInput(constants.INPUT_TOKEN, {required: false}) ||
-    process.env.GITHUB_TOKEN!;
   return {
-    token,
+    token:
+      core.getInput(constants.INPUT_TOKEN, {required: false}) ||
+      process.env.GITHUB_TOKEN!,
     owner:
       core.getInput(constants.INPUT_OWNER, {required: false}) ||
       context.repo.owner,
     repo:
       core.getInput(constants.INPUT_REPO, {required: false}) ||
       context.repo.repo,
-    name: core.getInput(constants.INPUT_RELEASE_NAME),
+    name: core.getInput(constants.INPUT_RELEASE_NAME).replace('refs/tags/', ''),
     tag:
       core.getInput(constants.INPUT_TAG_NAME) ||
       context.ref.replace('refs/tags/', ''),

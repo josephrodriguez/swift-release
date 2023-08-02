@@ -9766,15 +9766,15 @@ const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 const constants = __importStar(__nccwpck_require__(9042));
 function getInputs() {
-    const token = core.getInput(constants.INPUT_TOKEN, { required: false }) ||
-        process.env.GITHUB_TOKEN;
+    core.info(`Token: ${process.env.GITHUB_TOKEN}`);
     return {
-        token,
+        token: core.getInput(constants.INPUT_TOKEN, { required: false }) ||
+            process.env.GITHUB_TOKEN,
         owner: core.getInput(constants.INPUT_OWNER, { required: false }) ||
             github_1.context.repo.owner,
         repo: core.getInput(constants.INPUT_REPO, { required: false }) ||
             github_1.context.repo.repo,
-        name: core.getInput(constants.INPUT_RELEASE_NAME),
+        name: core.getInput(constants.INPUT_RELEASE_NAME).replace('refs/tags/', ''),
         tag: core.getInput(constants.INPUT_TAG_NAME) ||
             github_1.context.ref.replace('refs/tags/', ''),
         body: core.getInput(constants.INPUT_BODY),
