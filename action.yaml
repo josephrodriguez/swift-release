@@ -1,0 +1,17 @@
+name: 'Create Github Release'
+description: 'Create Github release for a repository'
+author: 'Jose Rodriguez'
+
+inputs:
+  tag_name:
+    description: 'The Kustomizegen version to set up.'
+    required: false
+    default: 'latest'
+
+runs:
+  using: 'node16'
+  main: 'dist/setup/index.js'
+
+branding:
+  icon: 'play-circle'
+  color: 'blue'  
