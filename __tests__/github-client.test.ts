@@ -23,8 +23,8 @@ describe('createRelease function', () => {
       token: 'mock-token',
       owner: 'owner',
       repo: 'repo',
-      release_name: undefined,
-      tag_name: 'v1.0.0',
+      name: undefined,
+      tag: 'v1.0.0',
       body: undefined,
       draft: false,
       prerelease: false
@@ -56,8 +56,8 @@ describe('createRelease function', () => {
       token: 'other-token',
       owner: 'other-owner',
       repo: 'other-repo',
-      release_name: 'Custom Release',
-      tag_name: 'v2.0.0',
+      name: 'Custom Release',
+      tag: 'v2.0.0',
       body: 'Custom release notes',
       draft: true,
       prerelease: true
@@ -91,8 +91,8 @@ describe('createRelease function', () => {
       token: 'mock-token',
       owner: 'owner',
       repo: 'repo',
-      release_name: undefined,
-      tag_name: 'v1.0.0',
+      name: undefined,
+      tag: 'v1.0.0',
       body: undefined,
       draft: false,
       prerelease: false

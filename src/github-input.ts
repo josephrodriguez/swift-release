@@ -6,8 +6,8 @@ export interface Inputs {
   token: string;
   owner: string;
   repo: string;
-  release_name: string | undefined;
-  tag_name: string | undefined;
+  name: string | undefined;
+  tag: string | undefined;
   body: string | undefined;
   draft: boolean;
   prerelease: boolean;
@@ -25,8 +25,8 @@ export function getInputs(): Inputs {
     repo:
       core.getInput(constants.INPUT_REPO, {required: false}) ||
       context.repo.repo,
-    release_name: core.getInput(constants.INPUT_RELEASE_NAME),
-    tag_name:
+    name: core.getInput(constants.INPUT_RELEASE_NAME),
+    tag:
       core.getInput(constants.INPUT_TAG_NAME) ||
       context.ref.replace('refs/tags/', ''),
     body: core.getInput(constants.INPUT_BODY),

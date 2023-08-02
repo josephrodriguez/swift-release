@@ -9621,12 +9621,13 @@ function wrappy (fn, cb) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.INPUT_DRAFT = exports.INPUT_PRERELEASE = exports.INPUT_BODY = exports.INPUT_RELEASE_NAME = exports.INPUT_TAG_NAME = exports.INPUT_REPO = exports.INPUT_OWNER = void 0;
+exports.INPUT_DRAFT = exports.INPUT_PRERELEASE = exports.INPUT_TOKEN = exports.INPUT_BODY = exports.INPUT_RELEASE_NAME = exports.INPUT_TAG_NAME = exports.INPUT_REPO = exports.INPUT_OWNER = void 0;
 exports.INPUT_OWNER = 'owner';
 exports.INPUT_REPO = 'repo';
-exports.INPUT_TAG_NAME = 'tag_name';
-exports.INPUT_RELEASE_NAME = 'release_name';
+exports.INPUT_TAG_NAME = 'tag';
+exports.INPUT_RELEASE_NAME = 'name';
 exports.INPUT_BODY = 'body';
+exports.INPUT_TOKEN = 'token';
 exports.INPUT_PRERELEASE = 'prerelease';
 exports.INPUT_DRAFT = 'draft';
 
@@ -9702,8 +9703,8 @@ function createRelease(inputs) {
             const { data } = yield octokit.rest.repos.createRelease({
                 owner: inputs.owner,
                 repo: inputs.repo,
-                name: inputs.release_name,
-                tag_name: inputs.tag_name,
+                name: inputs.name,
+                tag_name: inputs.tag,
                 body: inputs.body,
                 draft: inputs.draft,
                 prerelease: inputs.prerelease
@@ -9765,15 +9766,16 @@ const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 const constants = __importStar(__nccwpck_require__(9042));
 function getInputs() {
-    const token = core.getInput('token') || process.env.GITHUB_TOKEN;
+    const token = core.getInput(constants.INPUT_TOKEN, { required: false }) ||
+        process.env.GITHUB_TOKEN;
     return {
         token,
         owner: core.getInput(constants.INPUT_OWNER, { required: false }) ||
             github_1.context.repo.owner,
         repo: core.getInput(constants.INPUT_REPO, { required: false }) ||
             github_1.context.repo.repo,
-        release_name: core.getInput(constants.INPUT_RELEASE_NAME),
-        tag_name: core.getInput(constants.INPUT_TAG_NAME) ||
+        name: core.getInput(constants.INPUT_RELEASE_NAME),
+        tag: core.getInput(constants.INPUT_TAG_NAME) ||
             github_1.context.ref.replace('refs/tags/', ''),
         body: core.getInput(constants.INPUT_BODY),
         draft: core.getBooleanInput(constants.INPUT_DRAFT, { required: false }),
@@ -9875,6 +9877,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const inputs = (0, github_input_1.getInputs)();
+            core.info(`Inputs: ${JSON.stringify(inputs)}`);
             const release = yield (0, github_client_1.createRelease)(inputs);
             (0, github_output_1.setOutputs)(release);
             core.info(`Release created: ${release.html_url}`);

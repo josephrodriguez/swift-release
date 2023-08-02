@@ -34,8 +34,8 @@ export async function createRelease(
     const {data} = await octokit.rest.repos.createRelease({
       owner: inputs.owner,
       repo: inputs.repo,
-      name: inputs.release_name,
-      tag_name: inputs.tag_name!,
+      name: inputs.name,
+      tag_name: inputs.tag!,
       body: inputs.body,
       draft: inputs.draft,
       prerelease: inputs.prerelease

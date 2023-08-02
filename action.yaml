@@ -11,10 +11,10 @@ inputs:
   repo:
     description: 'The repository name'
     required: false
-  release_name:
+  name:
     description: 'The name of the release'
     required: false
-  tag_name:
+  tag:
     description: 'The tag name for the release'
     required: false
   body:
@@ -23,9 +23,11 @@ inputs:
   draft:
     description: 'Whether the release should be a draft'
     required: false
+    default: false
   prerelease:
     description: 'Whether the release should be a pre-release'
     required: false
+    default: false
 outputs:
   id:
     description: 'The ID of the created release'
