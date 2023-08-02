@@ -14,7 +14,9 @@ export interface Inputs {
 }
 
 export function getInputs(): Inputs {
-  const token = core.getInput('token') || process.env.GITHUB_TOKEN!;
+  const token =
+    core.getInput(constants.INPUT_TOKEN, {required: false}) ||
+    process.env.GITHUB_TOKEN!;
   return {
     token,
     owner:

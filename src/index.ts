@@ -6,6 +6,8 @@ import {createRelease} from './github-client';
 export async function run() {
   try {
     const inputs = getInputs();
+    core.info(`Inputs: ${JSON.stringify(inputs)}`);
+
     const release = await createRelease(inputs);
     setOutputs(release);
 
