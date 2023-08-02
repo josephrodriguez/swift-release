@@ -9766,7 +9766,6 @@ const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 const constants = __importStar(__nccwpck_require__(9042));
 function getInputs() {
-    core.info(`Token: ${process.env.GITHUB_TOKEN}`);
     return {
         token: core.getInput(constants.INPUT_TOKEN, { required: false }) ||
             process.env.GITHUB_TOKEN,
