@@ -9773,7 +9773,8 @@ function getInputs() {
             github_1.context.repo.owner,
         repo: core.getInput(constants.INPUT_REPO, { required: false }) ||
             github_1.context.repo.repo,
-        name: core.getInput(constants.INPUT_RELEASE_NAME).replace('refs/tags/', ''),
+        name: core.getInput(constants.INPUT_RELEASE_NAME) ||
+            github_1.context.ref.replace('refs/tags/', ''),
         tag: core.getInput(constants.INPUT_TAG_NAME) ||
             github_1.context.ref.replace('refs/tags/', ''),
         body: core.getInput(constants.INPUT_BODY),
@@ -9879,7 +9880,8 @@ function run() {
             core.info(`Inputs: ${JSON.stringify(inputs)}`);
             const release = yield (0, github_client_1.createRelease)(inputs);
             (0, github_output_1.setOutputs)(release);
-            core.info(`Release created: ${release.html_url}`);
+            core.info(`Outputs: ${JSON.stringify(release)}`);
+            core.info('Release created successfully');
         }
         catch (err) {
             core.setFailed(`${err}`);

@@ -11,7 +11,8 @@ export async function run() {
     const release = await createRelease(inputs);
     setOutputs(release);
 
-    core.info(`Release created: ${release.html_url}`);
+    core.info(`Outputs: ${JSON.stringify(release)}`);
+    core.info('Release created successfully');
   } catch (err) {
     core.setFailed(`${err}`);
   }

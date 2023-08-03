@@ -24,7 +24,9 @@ export function getInputs(): Inputs {
     repo:
       core.getInput(constants.INPUT_REPO, {required: false}) ||
       context.repo.repo,
-    name: core.getInput(constants.INPUT_RELEASE_NAME).replace('refs/tags/', ''),
+    name:
+      core.getInput(constants.INPUT_RELEASE_NAME) ||
+      context.ref.replace('refs/tags/', ''),
     tag:
       core.getInput(constants.INPUT_TAG_NAME) ||
       context.ref.replace('refs/tags/', ''),
