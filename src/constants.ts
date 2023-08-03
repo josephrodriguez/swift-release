@@ -6,3 +6,5 @@ export const INPUT_BODY = 'body';
 export const INPUT_TOKEN = 'token';
 export const INPUT_PRERELEASE = 'prerelease';
 export const INPUT_DRAFT = 'draft';
+export const INPUT_ASSET_NAME = 'asset_name';
+export const INPUT_ASSET_PATH = 'asset_path';

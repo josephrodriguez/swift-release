@@ -1,17 +1,7 @@
 import * as core from '@actions/core';
 import {context} from '@actions/github';
+import {Inputs} from './github-types';
 import * as constants from './constants';
-
-export interface Inputs {
-  token: string;
-  owner: string;
-  repo: string;
-  name: string | undefined;
-  tag: string | undefined;
-  body: string | undefined;
-  draft: boolean;
-  prerelease: boolean;
-}
 
 export function getInputs(): Inputs {
   return {
@@ -25,15 +15,17 @@ export function getInputs(): Inputs {
       core.getInput(constants.INPUT_REPO, {required: false}) ||
       context.repo.repo,
     name:
-      core.getInput(constants.INPUT_RELEASE_NAME) ||
+      core.getInput(constants.INPUT_RELEASE_NAME, {required: false}) ||
       context.ref.replace('refs/tags/', ''),
     tag:
-      core.getInput(constants.INPUT_TAG_NAME) ||
+      core.getInput(constants.INPUT_TAG_NAME, {required: false}) ||
       context.ref.replace('refs/tags/', ''),
-    body: core.getInput(constants.INPUT_BODY),
+    body: core.getInput(constants.INPUT_BODY, {required: false}),
     draft: core.getBooleanInput(constants.INPUT_DRAFT, {required: false}),
     prerelease: core.getBooleanInput(constants.INPUT_PRERELEASE, {
       required: false
-    })
+    }),
+    asset_name: core.getInput(constants.INPUT_ASSET_NAME, {required: false}),
+    asset_path: core.getInput(constants.INPUT_ASSET_PATH, {required: false})
   };
 }
