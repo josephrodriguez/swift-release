@@ -36,8 +36,7 @@ jobs:
 
   dependabot:
     needs: [build]
-    permissions:
-      pull-requests: write
+    permissions: write-all
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
     steps:
