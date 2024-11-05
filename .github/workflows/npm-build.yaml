@@ -21,7 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           echo "The run ID for this workflow is ${{ github.run_id }}"
-          echo "The job ID for this workflow is ${{ github.job.id }}"
+          echo "The job ID for this workflow is ${{ github.job }}"
+          echo "The run attempt for this workflow is ${{ github.run_attempt }}"
+          echo "The run number for this workflow is ${{ github.run_number }}"
       - run: npm install --package-lock-only
       - run: npm ci
       - run: npm run build
