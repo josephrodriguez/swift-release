@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: 20.x
       - uses: actions/checkout@v4
-      - run: echo '${{ toJSON(github) }}' | jq
+      - run: |
+          echo "The run ID for this workflow is ${{ github.run_id }}"
+          echo "The job ID for this workflow is ${{ github.job.id }}"
       - run: npm install --package-lock-only
       - run: npm ci
       - run: npm run build
